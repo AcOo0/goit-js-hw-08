@@ -14,7 +14,7 @@ try {
   email.value = data.email || '';
   message.value = data.message || '';
 } catch (error) {
-  console.log('error');
+  console.log('storage empty');
 }
 
 function saveForm(e) {
@@ -27,9 +27,14 @@ function saveForm(e) {
 };
 
 function submitForm(e) { 
-    e.preventDefault();
+  e.preventDefault();
+  if (email.value.trim() === '' || message.value === '') {
+    alert('Ой! Щось пішло не так! Заповніть всі поля!')
+  } else {
     console.log(formValue);
     localStorage.clear();
     e.target.reset();
     formValue = {};
+    data = {}
+  }
 };
